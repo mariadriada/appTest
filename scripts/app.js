@@ -1,3 +1,6 @@
-console.log("demo");
 
-console.log($("#text").text());
+// Load activity content 
+$( document ).ready(function(){
+	console.log($("#text").text());
+});
+
