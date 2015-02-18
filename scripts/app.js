@@ -38,7 +38,7 @@ $( document ).ready(function(){
 		// Build view activity
 		var view	=	"<form> <table border='1'>";
 
-		/*************************** TITLE OF TABLE ********************/
+		/*************************** TITLE OF TABLE - COLUMNS ********************/
 		// Init Head title
 		view		+=	"<tr>";
 
@@ -50,61 +50,43 @@ $( document ).ready(function(){
 		//End Head Litle
 		view		+=	"</tr>";
 		/*************************** END  TITLE OF TABLE ****************/
-		var head = false;
+
+
+		/*************************** BODY TABLE - ROWS ********************/
+
+		//Control the view of text of angle	
 		var count = 0;
 
+		//Record rows
 		$.each( object.data, function( key, value ) {
 
+			// Open row
 			view		+=	"<tr>";
 
-			head = true;
+				//Record
+				$.each( value, function( key2, value2 ) {
 
-			//Record registro
-			$.each( value, function( key2, value2 ) {
-				console.log("key2");
-				console.log(key2);
+					// Show angle text
+					if (count === 0) {
+						data = value.angulo;
+					}
+					// Show radio button
+					else{
+						data = "<div class='radio'> \
+									<label><input type='radio' name='optradio'></label> \
+								</div>";
+					}
+					// Adding row to table
+					view	+=	"<td>"+data+"</td> ";
+					// Increase counter to disable text of angle 
+				   	count = count+1;
+				});
 
-				if (count === 0) {
-					data = value.angulo;
-				}
-				else{
-					data = "";
-				}
-
-				 view	+=	"<td> \
-				<div class='radio'> \
-					<label><input type='radio' name='optradio'>"+data+"</label> \
-				</div> \
-			   </td> ";
-
-			   count = count+1;
-
-			});
-
+			// Close row
 			view		+=	"</tr>";
-			
-			head = false;
+			// Reset counter for enable next row
 			count = 0;
-
-			/*console.log("data");
-			console.log(value)
-		 	view	+=	"<tr>";
-
-		 	//Record heads to graphics radio buttons
-			$.each( object.head, function( key, value ) {		 
-			  view	+=	"<td> \
-				<div class='radio'> \
-					<label><input type='radio' name='optradio'>"+value.angulo+"</label> \
-				</div> \
-			   </td> ";
-			});
-
-		  view	+=	"</tr>";*/
-
-
 		});
-
-
 
 		view		+=	"</table> </form> ";
 
