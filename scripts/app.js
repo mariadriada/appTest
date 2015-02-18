@@ -1,4 +1,3 @@
-
 // Load activity content 
 $( document ).ready(function(){
 	
@@ -31,7 +30,7 @@ $( document ).ready(function(){
 	// Call function to load data
 	loadActivity(objectActivity);
 
-	// Function to load activity data on div #dataActivity
+	/* Function to load activity data on div #dataActivity */
 	function loadActivity(object){
 		console.log($("#text").text());
 		console.log('load activity');
@@ -119,18 +118,21 @@ $( document ).ready(function(){
 
 		//Close table
 		view	+=	"</table>";
+
 		//Adding Buttons
 		view	+=	"<div class='btns'><button type='submit' class='btn btn-danger'>Verificar</button> \
 						<button type='button' class='btn btn-danger' id='btnClear'>Borrar</button></div>";
 		//Close form
 		view	+=	"</form></div>";
 
+		/*************************** END BODY TABLE - FORM ********************/
+
 		//Show data in #dataActivity
 		$(".dataActivity").html(view);
 	}
 
 
-	// Submit form 
+	/* Submit form */
 	$( "form" ).on( "submit", function( event ) {
 		//Not reload
 		event.preventDefault();
@@ -138,25 +140,26 @@ $( document ).ready(function(){
 		//Get answer
 		var answerUser = $( this ).serialize() ;
 
-		console.log(answer);
-		console.log(answerUser);
-
-		if (answer === answerUser){
-			alert("OK");
+		//Validate number answers = 6
+		if ($( this ).serializeArray().length == 6){
+			if (answer === answerUser){
+				alert("OK");
+			}
+			else{
+				showAnswers();
+			}
 		}
 		else{
-			showAnswers();
+			alert("Complete all answers")
 		}
-
-
 	});
 
-	//Show answers
+	/*Show answers*/
 	function showAnswers(){
 		$(".imgAnswer").show();
 	}
 
-	// Clear answers
+	/* Clear answers */
 	$("#btnClear").click(function(){
 		$(".imgAnswer").hide();
 	})
