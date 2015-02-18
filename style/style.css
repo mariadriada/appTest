@@ -16,6 +16,7 @@ h1, h2, h3{
 	background-color: #945A4E;
 	color: white;
 	display: inline-block;
+
 }
 
 .banner img{
@@ -51,9 +52,7 @@ h1, h2, h3{
 }
 
 /* Main container*/
-.container{
-		width: 100%;
-}
+
 /****************************** ACTIVITY ******************/
 
 .activityContainer{
@@ -61,7 +60,62 @@ h1, h2, h3{
 	background-color: white;
 	margin:  0 auto;
 	margin-top: 50px;
+	padding: 10px;
 
+}
+
+.activityContainer .form{
+	background-color: #E6E6E6;	
+	width: 600px;
+	margin:  0 auto;
+	padding: 20px;
+	border-radius: 5px;
+}
+
+
+.activityContainer h2{
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: 2px;
+}
+
+.activityContainer table{
+	margin: 0 auto;
+	text-align: center;
+	font-weight: 700;
+	font-size: 16px;
+}
+
+.activityContainer table th{
+	background-color: #70B5DE;
+	width: 100px;
+	text-align: center;
+	color: black;
+	font-size: 18px;
+}
+
+.activityContainer table tr{
+	background-color: white;
+}
+
+.rd{
+	background-color:  #70B5DE;
+}
+
+ input[type=radio] {
+    color:red;
+    height: 25px;
+    width: 25px;
+}
+
+.btns{	
+	width: 205px;
+	margin:  0 auto;
+	margin-top: 20px;
+}
+
+.btns .btn{
+	width: 100px;
 }
 
 h3{
