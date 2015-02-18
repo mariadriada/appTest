@@ -89,11 +89,11 @@ $( document ).ready(function(){
 							if (value.value.toLowerCase() === key2.toLowerCase()){
 								console.log("correctooooooooooooooooooo");
 								v = value.value;
-								add = "<img src='resources/img/ok.png' alt='' class='img'>";
+								add = "<img src='resources/img/ok.png' alt='' class='imgAnswer'>";
 
 							}
 							else{
-								add = "<img src='resources/img/error.png' alt='' class='img'> ";
+								add = "<img src='resources/img/error.png' alt='' class='imgAnswer'> ";
 							}
 							
 							data = "<div class='radio'> \
@@ -121,7 +121,7 @@ $( document ).ready(function(){
 		view	+=	"</table>";
 		//Adding Buttons
 		view	+=	"<div class='btns'><button type='submit' class='btn btn-danger'>Verificar</button> \
-						<button type='button' class='btn btn-danger'>Borrar</button></div>";
+						<button type='button' class='btn btn-danger' id='btnClear'>Borrar</button></div>";
 		//Close form
 		view	+=	"</form></div>";
 
@@ -145,8 +145,20 @@ $( document ).ready(function(){
 			alert("OK");
 		}
 		else{
-			alert("ERROR");
+			showAnswers();
 		}
+
+
 	});
+
+	//Show answers
+	function showAnswers(){
+		$(".imgAnswer").show();
+	}
+
+	// Clear answers
+	$("#btnClear").click(function(){
+		$(".imgAnswer").hide();
+	})
 });
 

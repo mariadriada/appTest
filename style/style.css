@@ -131,7 +131,9 @@ h3{
 	text-align: right;
 }
 
-.img{
+.imgAnswer{
 	width: 25px;
 	height: 25px;
+	margin-left: 10px;
+	display: none;
 }
