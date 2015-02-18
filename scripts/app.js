@@ -44,7 +44,7 @@ $( document ).ready(function(){
 
 		/*************************** TITLE OF TABLE - COLUMNS ********************/
 		// Init Head title
-		view		+=	"<tr>";
+		view	+=	"<tr>";
 
 		//Title of table
 		$.each( object.head, function( key, value ) {
@@ -52,15 +52,18 @@ $( document ).ready(function(){
 		});
 
 		//End Head Litle
-		view		+=	"</tr>";
+		view	+=	"</tr>";
 		/*************************** END  TITLE OF TABLE ****************/
 
 
 		/*************************** BODY TABLE - ROWS ********************/
 		//Control the view of text of angle	
 		var count = 0;
+		//Value  to input radio type
 		var v = "";
+		// CSS Activate when show angle text 
 		var class_radio = "rd";
+		// Correct or incorrect image 
 		var add = "";
 
 		//Record rows
