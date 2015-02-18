@@ -61,6 +61,7 @@ $( document ).ready(function(){
 		var count = 0;
 		var v = "";
 		var class_radio = "rd";
+		var add = "";
 
 		//Record rows
 		$.each( object.data, function( key, value ) {
@@ -76,7 +77,7 @@ $( document ).ready(function(){
 						// Show angle text
 						if (count === 0) {
 							data = value.angulo;
-							class_radio = "rd";
+							class_radio = "rd";							
 						}
 						// Show radio button
 						else{
@@ -85,12 +86,17 @@ $( document ).ready(function(){
 							if (value.value.toLowerCase() === key2.toLowerCase()){
 								console.log("correctooooooooooooooooooo");
 								v = value.value;
+								add = "<img src='resources/img/ok.png' alt='' class='img'>";
 
+							}
+							else{
+								add = "<img src='resources/img/error.png' alt='' class='img'> ";
 							}
 							
 							data = "<div class='radio'> \
-										<label><input type='radio' name='"+value.angulo+"' value='"+v+"'></label> \
-									</div>";
+										<label><input type='radio' name='"+value.angulo+"' value='"+v+"'></label>"+add+"</div>";
+
+
 						}
 						// Adding row to table
 						view	+=	"<td class='"+class_radio+"'>"+data+"</td> ";

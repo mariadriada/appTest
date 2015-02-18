@@ -77,6 +77,8 @@ h1, h2, h3{
 	font-size: 18px;
 	font-weight: 600;
 	letter-spacing: 2px;
+	padding-left: 10%;
+	padding-right: 10%;
 }
 
 .activityContainer table{
@@ -127,4 +129,9 @@ h3{
 	font-size: 12px;
 	float: right;
 	text-align: right;
+}
+
+.img{
+	width: 25px;
+	height: 25px;
 }
