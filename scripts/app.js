@@ -22,18 +22,14 @@ $( document ).ready(function(){
 	};
 
 	//Correct answer
-	var answer = "150%C2%B0=Obtuso&12=Agudo&130=Obtuso&75=Agudo&90=Recto&180=Llano";
+	var answer = "150%C2%B0=Obtuso&12%C2%B0=Agudo&130%C2%B0=Obtuso&75%C2%B0=Agudo&90%C2%B0=Recto&180%C2%B0=Llano ";
 
-	console.log("object");
-	console.log(objectActivity);
-
+	
 	// Call function to load data
 	loadActivity(objectActivity);
 
 	/* Function to load activity data on div #dataActivity */
 	function loadActivity(object){
-		console.log($("#text").text());
-		console.log('load activity');
 
 		// Show description activity 
 		$("#text").html(object.name);
@@ -64,6 +60,8 @@ $( document ).ready(function(){
 		var class_radio = "rd";
 		// Correct or incorrect image 
 		var add = "";
+		// Id answer img
+		var idImg	= "";
 
 		//Record rows
 		$.each( object.data, function( key, value ) {
@@ -74,7 +72,10 @@ $( document ).ready(function(){
 				//Record
 				$.each( value, function( key2, value2 ) {
 
-					if (count < (object.head.length)){		
+					if (count < (object.head.length)){	
+
+						//Id img 
+						idImg = value.angulo+"_"+count;
 
 						// Show angle text
 						if (count === 0) {
@@ -83,20 +84,18 @@ $( document ).ready(function(){
 						}
 						// Show radio button
 						else{
-
-							console.log("value "+value.value+"key  "+key2);
 							if (value.value.toLowerCase() === key2.toLowerCase()){
-								console.log("correctooooooooooooooooooo");
+							
 								v = value.value;
-								add = "<img src='resources/img/ok.png' alt='' class='imgAnswer'>";
+								add = "<img src='resources/img/ok.png' alt='' class='imgAnswer "+idImg+"' >";
 
 							}
 							else{
-								add = "<img src='resources/img/error.png' alt='' class='imgAnswer'> ";
+								add = "<img src='resources/img/error.png' alt='' class='imgAnswer "+idImg+"'> ";
 							}
 							
 							data = "<div class='radio'> \
-										<label><input type='radio' name='"+value.angulo+"' value='"+v+"'></label>"+add+"</div>";
+										<label><input type='radio' name='"+value.angulo+"' id='"+value.angulo+"' value='"+v+"' answer='"+idImg+"' ok=''></label>"+add+"</div>";
 
 
 						}
@@ -140,10 +139,17 @@ $( document ).ready(function(){
 		//Get answer
 		var answerUser = $( this ).serialize() ;
 
+		console.log(answerUser);
+		console.log(answer);
+
+		console.log($( this ).serializeArray());
+
 		//Validate number answers = 6
 		if ($( this ).serializeArray().length == 6){
-			if (answer === answerUser){
-				alert("OK");
+			//Correct answers			
+			if (answer.trim() === answerUser.trim()){
+				showAnswers();
+				alert("Congratulations. Correct answers !!!");
 			}
 			else{
 				showAnswers();
@@ -154,14 +160,34 @@ $( document ).ready(function(){
 		}
 	});
 
-	/*Show answers*/
+	/* Show answers image */
 	function showAnswers(){
-		$(".imgAnswer").show();
+
+		// Get checked radio obtions 
+		dataArray = $("#form input[type=radio]:checked");
+
+		//Record to activate img
+		$.each( dataArray, function( key, value ) {
+			
+			//Independent class for each validated image
+			classImg = "."+$(value).attr( "answer" );
+			// Show image in radio option checked
+			$( classImg ).show();
+		});
 	}
 
-	/* Clear answers */
+	/* Clear radio options checked */
 	$("#btnClear").click(function(){
+		//Hide answer image
 		$(".imgAnswer").hide();
+
+		// Get checked radio obtions 
+		dataArray = $("#form input[type=radio]:checked");
+		//Record to activate img
+		$.each( dataArray, function( key, value ) {
+			//Clear checked
+			$( value ).removeAttr('checked');
+		});
 	})
 });
 

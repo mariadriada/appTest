@@ -8,6 +8,7 @@ h1, h2, h3{
 
 .container{
 	background-color: #E6E6E6;	
+	width: 100%;
 }
 
 .banner{
@@ -15,16 +16,14 @@ h1, h2, h3{
 	height: 100px;
 	background-color: #945A4E;
 	color: white;
-	display: inline-block;
-
+	padding-left: 20px;
 }
 
 .banner img{
 	float: left;
-	margin-right: 10px;
-	margin-left: 5%;
 	padding: 0;
 	margin: 0;
+	max-height: 100px;
 }
 
 .banner h1{
@@ -35,6 +34,7 @@ h1, h2, h3{
 }
 
 .hr{
+	padding: 0;
 	height: 10px;
 	background-color: #EBC236;
 
@@ -44,11 +44,13 @@ h1, h2, h3{
 	color:white;
 	letter-spacing: 2px;
 	background-color: #EBC236;
-	width: 200px;
-	height: 50px;
+	width: 150px;
+	height: 40px;
 	margin-left: 20px;
-	font-size: 18px;
-	font-weight: 700;
+	font-size: 20px;
+	font-weight: 600;
+	text-align: center;
+
 }
 
 /* Main container*/
