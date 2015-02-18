@@ -10,17 +10,20 @@ $( document ).ready(function(){
 			{title : "Agudo"},
 			{title : "Obtuso"},
 			{title : "Recto"},
-			{title : "llano"},
+			{title : "Llano"},
 		],
 		data : [
-			{ angulo: "150°",	agudo : false,	Obtuso: false, recto: false, llano: false},
-			{ angulo: "12",		agudo : false,	Obtuso: false, recto: false, llano: false},			
-			{ angulo: "130",	agudo : false,	Obtuso: false, recto: false, llano: false},
-			{ angulo: "75",		agudo : false,	Obtuso: false, recto: false, llano: false},
-			{ angulo: "90",		agudo : false,	Obtuso: false, recto: false, llano: false},
-			{ angulo: "180",	agudo : false,	Obtuso: false, recto: false, llano: false}
+			{ angulo: "150°",	agudo : false,	obtuso: false, recto: false, llano: false,	value: "Obtuso"},
+			{ angulo: "12",		agudo : false,	obtuso: false, recto: false, llano: false,	value: "Agudo"},			
+			{ angulo: "130",	agudo : false,	obtuso: false, recto: false, llano: false,	value: "Obtuso"},
+			{ angulo: "75",		agudo : false,	obtuso: false, recto: false, llano: false,	value: "Agudo"},
+			{ angulo: "90",		agudo : false,	obtuso: false, recto: false, llano: false,	value: "Recto"},
+			{ angulo: "180",	agudo : false,	obtuso: false, recto: false, llano: false,	value: "Llano"}
 		]
 	};
+
+	//Correct answer
+	var answer = "150%C2%B0=Obtuso&12=Agudo&130=Obtuso&75=Agudo&90=Recto&180=Llano";
 
 	console.log("object");
 	console.log(objectActivity);
@@ -36,7 +39,7 @@ $( document ).ready(function(){
 		$("#text").html(object.name);
 
 		// Build view activity
-		var view	=	"<form> <table border='1'>";
+		var view	=	"<form id='form'> <table border='1'>";
 
 		/*************************** TITLE OF TABLE - COLUMNS ********************/
 		// Init Head title
@@ -56,6 +59,7 @@ $( document ).ready(function(){
 
 		//Control the view of text of angle	
 		var count = 0;
+		var v = "";
 
 		//Record rows
 		$.each( object.data, function( key, value ) {
@@ -63,23 +67,46 @@ $( document ).ready(function(){
 			// Open row
 			view		+=	"<tr>";
 
+
+
 				//Record
 				$.each( value, function( key2, value2 ) {
 
-					// Show angle text
-					if (count === 0) {
-						data = value.angulo;
+					if (count < (object.head.length)){
+
+						//Validate Answer
+
+						
+												
+
+						// Show angle text
+						if (count === 0) {
+							data = value.angulo;
+						}
+						// Show radio button
+						else{
+
+							console.log("value "+value.value+"key  "+key2);
+							if (value.value.toLowerCase() === key2.toLowerCase()){
+								console.log("correctooooooooooooooooooo");
+								v = value.value;
+
+							}
+							
+							data = "<div class='radio'> \
+										<label><input type='radio' name='"+value.angulo+"' value='"+v+"'></label> \
+									</div>";
+						}
+						// Adding row to table
+						view	+=	"<td>"+data+"</td> ";
+
+
+						// Increase counter to disable text of angle 
+					   	count = count+1;
+
 					}
-					// Show radio button
-					else{
-						data = "<div class='radio'> \
-									<label><input type='radio' name='optradio'></label> \
-								</div>";
-					}
-					// Adding row to table
-					view	+=	"<td>"+data+"</td> ";
-					// Increase counter to disable text of angle 
-				   	count = count+1;
+
+					
 				});
 
 			// Close row
@@ -87,11 +114,39 @@ $( document ).ready(function(){
 			// Reset counter for enable next row
 			count = 0;
 		});
+		
 
-		view		+=	"</table> </form> ";
+		//Close table
+		view	+=	"</table>";
+		//Adding Buttons
+		view	+=	"	<button type='submit' class='btn btn-default'>Verificar</button> \
+						<button type='button' class='btn btn-default'>Borrar</button>";
+		//Close form
+		view	+=	"</form>";
 
 		//Show data in #dataActivity
 		$(".dataActivity").html(view);
 	}
+
+
+	$( "form" ).on( "submit", function( event ) {
+		event.preventDefault();
+
+
+		//Get answer
+		var answerUser = $( this ).serialize() ;
+
+		console.log(answer);
+		console.log(answerUser);
+
+		if (answer === answerUser){
+			alert("OK");
+		}
+		else{
+			alert("ERROR");
+		}
+
+		console.log( $( this ).serialize() );
+	});
 });
 
