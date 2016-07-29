@@ -1,6 +1,5 @@
 # appTest
-Project to make test web with Ionic v2
-
+Project to make test web with 
 
 /*********************
 
